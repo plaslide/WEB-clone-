@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Requirements (Table Layout)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS ทั้งหมดจะอยู่ตรงนี้ */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0; /* สีพื้นหลังของหน้าเว็บ */
+        }
+
+        .main-container {
+            background-color: #00008B; /* Deep Royal Blue */
+            color: #FFFFFF; /* สีข้อความขาว */
+            margin: 20px auto; /* ระยะห่างจากขอบหน้าจอและจัดกึ่งกลางแนวนอน */
+            padding: 0;
+            max-width: 900px; /* จำกัดความกว้างสูงสุด */
+            border-radius: 5px; /* เพิ่มขอบมนเล็กน้อย */
+            overflow: hidden; /* เพื่อให้ border-radius ทำงานกับเนื้อหาด้านใน */
+        }
+
+        .section-title-mobile {
+            background-color: #00008B; /* สีเดียวกับ container หลัก */
+            padding: 15px 20px;
+            font-size: 1.8em; /* ขนาดตัวอักษรของหัวข้อ "Mobile" */
+            font-weight: 700;
+            text-align: left; /* ชิดซ้าย */
+            margin-bottom: 0; /* ลบ margin ด้านล่าง */
+            border-bottom: none; /* ไม่มีเส้นแบ่งด้านล่าง */
+        }
+
+        .requirements-table-wrapper {
+            border: 2px solid #FFD700; /* เส้นขอบสีเหลืองทองรอบตาราง */
+            border-radius: 5px; /* ทำให้ขอบตารางมน */
+            overflow: hidden; /* สำคัญเพื่อให้ border-radius ทำงานกับตารางภายใน */
+            /* หากต้องการให้ตารางอยู่ใต้ "Mobile" โดยไม่มีเส้นแบ่ง */
+            /* margin-top: 20px; */
+        }
+
+        .requirements-table {
+            width: 100%;
+            border-collapse: collapse; /* ทำให้เส้นขอบเซลล์รวมกัน */
+            background-color: #00008B; /* สีพื้นหลังของตาราง */
+        }
+
+        .requirements-table th,
+        .requirements-table td {
+            padding: 20px;
+            vertical-align: top; /* จัดข้อความชิดด้านบนในเซลล์ */
+            border: none; /* ลบเส้นขอบเริ่มต้นของเซลล์ */
+            color: #FFFFFF;
+        }
+
+        /* เส้นแบ่งแนวตั้ง */
+        .requirements-table td:first-child {
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            width: 200px; /* กำหนดความกว้างของคอลัมน์ซ้าย */
+            font-size: 1.5em; /* ขนาดตัวอักษรของ "Android", "iOS/iPadOS" */
+            font-weight: 700;
+        }
+
+        /* เส้นแบ่งแนวนอน */
+        .requirements-table tr:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .requirements-table p {
+            margin-bottom: 8px; /* ระยะห่างระหว่างบรรทัดข้อความ */
+            margin-top: 0;
+            line-height: 1.4; /* เพิ่มระยะห่างบรรทัดเพื่อความอ่านง่าย */
+        }
+
+        .requirements-table p:last-child {
+            margin-bottom: 0; /* ไม่มี margin ที่บรรทัดสุดท้ายของแต่ละเซลล์ */
+        }
+
+        .android-label {
+            color: #FFA500; /* สีส้มสำหรับป้ายกำกับในส่วน Android */
+            font-weight: bold; /* ทำให้ตัวหนาขึ้นเล็กน้อยตามรูป */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 10px auto;
+            }
+            .section-title-mobile {
+                font-size: 1.5em;
+                padding: 12px 15px;
+            }
+            .requirements-table th,
+            .requirements-table td {
+                padding: 15px;
+                font-size: 0.95em;
+            }
+            .requirements-table td:first-child {
+                width: auto; /* บนมือถือ ไม่ต้องกำหนดความกว้างตายตัว */
+                font-size: 1.2em;
+                border-right: none; /* ลบเส้นแบ่งแนวตั้ง */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* เพิ่มเส้นแบ่งด้านล่างแทน */
+            }
+            /* ทำให้คอลัมน์ซ้ายและขวาวางซ้อนกันบนมือถือ */
+            .requirements-table thead, .requirements-table tbody, .requirements-table tr, .requirements-table td, .requirements-table th {
+                display: block;
+            }
+            .requirements-table tr {
+                margin-bottom: 10px; /* เพิ่มช่องว่างระหว่างบล็อกข้อมูลบนมือถือ */
+                border: none; /* ลบเส้นแบ่งแนวนอนของ tr บนมือถือ */
+            }
+            .requirements-table td {
+                text-align: left !important; /* บังคับให้ชิดซ้ายบนมือถือ */
+            }
+            .requirements-table tr:not(:last-child) {
+                border-bottom: none; /* ลบเส้นแบ่งแนวนอนที่เคยกำหนดไว้ */
+            }
+             .requirements-table tr {
+                background-color: #00008B; /* ให้พื้นหลังของแต่ละบล็อกเหมือนกัน */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* เพิ่มเส้นแบ่งระหว่างบล็อกข้อมูล */
+            }
+            .requirements-table tr:last-child {
+                border-bottom: none;
+            }
+            .requirements-table td {
+                 border: none; /* ลบเส้นขอบทั้งหมดของ td บนมือถือ */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                margin: 10px auto;
+            }
+            .section-title-mobile {
+                font-size: 1.3em;
+                padding: 10px 12px;
+            }
+            .requirements-table th,
+            .requirements-table td {
+                padding: 12px;
+                font-size: 0.85em;
+            }
+            .requirements-table td:first-child {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1 class="section-title-mobile">Mobile</h1>
+
+        <div class="requirements-table-wrapper">
+            <table class="requirements-table">
+                <tbody>
+                    <tr>
+                        <td>Android</td>
+                        <td>
+                            <p><span class="android-label">Android OS:</span> Version 7.0 or above</p>
+                            <p><span class="android-label">Memory:</span> 2 GB or above RAM</p>
+                            <p><span class="android-label">CPU:</span> 64-bit Arm-based quad core (1.5 GHz) or above</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>iOS/iPadOS</td>
+                        <td>
+                            <p>Devices compatible with iOS 15/iPadOS 15 or above</p>
+                            <p>iPhone 6s or above</p>
+                            <p>iPad Pro (9.7-inch) or above</p>
+                            <p>iPad Air 2 or above</p>
+                            <p>iPad mini 4 or above</p>
+                            <p>iPod touch (7th generation)</p>
+                            <p>iPad (5th generation) or above</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
